@@ -54,6 +54,9 @@ def main():
     operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
 
     # Perform the calculation and display the result
+    if num2 == 0 and operation == "divide":
+        raise ValueError("Cannot divide by zero.")
+        return
     result = simple_calculator(operation, num1, num2)
     print(f"The result of {operation}ing {num1} and {num2} is: {result}")
 
