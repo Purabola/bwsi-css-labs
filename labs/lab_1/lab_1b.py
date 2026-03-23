@@ -9,6 +9,15 @@ and prints the result to the terminal window.
 
 """
 
+def sanitized_input(prompt: str) -> str:
+    """
+    Function to fix user input when not provided as a integer or valid operation. It will keep asking the user for input until a valid input is provided."""
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            pass
+
 def simple_calculator(operation: str, num1: float, num2: float) -> float:
     """
     Function that takes in two numbers and an operation (add, subtract, multiply, divide),
@@ -32,8 +41,6 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
     elif operation == "divide":
         if num2 != 0:
             return num1 / num2
-        else:
-            raise ValueError("Cannot divide by zero.")
     else:
         raise ValueError("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
 
@@ -42,8 +49,8 @@ def main():
     print(f"===== Simple Calculator =====")
 
     # Ask the user for sample input    
-    num1 = float(input("Enter the first number: "))
-    num2 = float(input("Enter the second number: "))
+    num1 = sanitized_input(("Enter the first number (valid floating point number): "))
+    num2 = sanitized_input(("Enter the second number (valid floating point number): "))
     operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
 
     # Perform the calculation and display the result
@@ -53,3 +60,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
